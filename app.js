@@ -6,6 +6,6 @@ require('path');
 
 app.use('/api', routes)
 
-app.listen(3000, () => {
-    console.log('Server is started..! ', 3000);
+app.listen(5454, () => {
+    console.log('Server is started..! ', 5454);
 });
