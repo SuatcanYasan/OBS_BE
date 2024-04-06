@@ -6,8 +6,12 @@ const getUserByEmailAndPassword = async (body) => {
         return await pool.query(
             `select id,
                 name,
+                lastname,
                 email,
-                password
+                faculty,
+                class,
+                email,
+                role
              from users
              where email = $1
                and password = $2`,
