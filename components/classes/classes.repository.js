@@ -6,8 +6,8 @@ const getAllClasses = async (data,user) => {
             `SELECT
                  ac.id,
                  ac.name,
-                 COUNT(DISTINCT exams.id) AS exams_count,
-                 COUNT(DISTINCT cc.id) AS classes_count
+                 CAST(COUNT(DISTINCT exams.id) AS INT) AS exams_count,
+                 CAST(COUNT(DISTINCT cc.id) AS INT) AS classes_count
              FROM
                  all_classes ac
                      LEFT JOIN
