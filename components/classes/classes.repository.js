@@ -61,14 +61,14 @@ const getClassesStatus = async (data,user) => {
     try {
         return await pool.query(
             `SELECT 
-                (SELECT COUNT(1) FROM exams)                                            AS exams_count,
-                (SELECT COUNT(1) FROM homeworks)                                        AS homework_count,
-                (SELECT COUNT(1) FROM contents)                                         AS contents_count,
-                (SELECT COUNT(1) FROM current_classes)                                  AS classes_count,
-                (SELECT COUNT(1) FROM exams WHERE $1 = ANY(completed_users))             AS completed_exams_count,
-                (SELECT COUNT(1) FROM homeworks WHERE $1 = ANY(completed_users))         AS completed_homework_count,
-                (SELECT COUNT(1) FROM contents WHERE $1 = ANY(completed_users))          AS completed_contents_count,
-                (SELECT COUNT(1) FROM current_classes WHERE $1 = ANY(completed_users))   AS completed_classes_count;`,
+                (SELECT COUNT(1) FROM exams)                                            AS total_exam,
+                (SELECT COUNT(1) FROM homeworks)                                        AS total_homework,
+                (SELECT COUNT(1) FROM contents)                                         AS total_content,
+                (SELECT COUNT(1) FROM current_classes)                                  AS total_classes,
+                (SELECT COUNT(1) FROM exams WHERE $1 = ANY(completed_users))             AS completed_exams,
+                (SELECT COUNT(1) FROM homeworks WHERE $1 = ANY(completed_users))         AS completed_homework,
+                (SELECT COUNT(1) FROM contents WHERE $1 = ANY(completed_users))          AS completed_contents,
+                (SELECT COUNT(1) FROM current_classes WHERE $1 = ANY(completed_users))   AS completed_classes;`,
             [user.id]
         );
     } catch (e) {
