@@ -28,8 +28,15 @@ const getCurrentClasses = async (req, res) => {
     }
 }
 
+const getClassStatus = async (req, res) => {
+    const {body,user} = req
+    const result = await classesRepository.getClassesStatus(body,user)
+    res.success(result.rows[0])
+}
+
 module.exports = {
     getAllClasses,
     getClassesByID,
-    getCurrentClasses
+    getCurrentClasses,
+    getClassStatus
 }
