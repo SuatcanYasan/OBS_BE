@@ -28,9 +28,18 @@ const getAllClasses = async (data,user) => {
 const getAllClassesByID = async (data,user) => {
     try {
         return await pool.query(
-            `select *
-             from all_classes
-             where faculty_id = $1 and class = $2 and id = $3`,
+            `select ac.id,
+                    ac.name as class_name,
+                    f.name as faculty_name,
+                    ac.class,
+                    u.name as name,
+                    u.lastname,
+                    u.email,
+                    (SELECT COUNT(1) FROM users u where class = $2 and faculty = $1  ) as user_count
+             from all_classes ac
+                      left join users u on u.id = teacher_id
+                      left join faculty f on f.id = ac.faculty_id
+             where faculty_id = $1 and ac.class = $2 and ac.id = $3`,
             [user.faculty, user.class, data.id]
 
         )
