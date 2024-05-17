@@ -22,7 +22,7 @@ const getCurrentClasses = async (req, res) => {
     req.body.id = req.params.id;
     const result = await classesRepository.getCurrentClasses(body,user)
     if(result.rows.length > 0){
-        return res.success(result.rows[0])
+        return res.success(result.rows)
     }else{
         return res.error("Ders bulunamadı")
     }
