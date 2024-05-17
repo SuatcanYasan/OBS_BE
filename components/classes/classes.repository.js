@@ -46,9 +46,15 @@ const getAllClassesByID = async (data,user) => {
 const getCurrentClasses = async (data,user) => {
     try {
         return await pool.query(
-            `select *
+            `select id,
+                    title,
+                    type,
+                    url,
+                    start_date,
+                    week
              from current_classes
-             where faculty_id = $1 and classes_id = $2`,
+             where faculty_id = $1
+               and classes_id = $2`,
             [user.faculty, data.id]
 
         )
