@@ -34,9 +34,17 @@ const getClassStatus = async (req, res) => {
     res.success(result.rows[0])
 }
 
+const completeClasses = async (req, res) => {
+    const {body,user} = req
+    req.body.id = req.params.id;
+    req.body.classes_id = req.params.classes_id;
+    const result = await classesRepository.completeClasses(body,user)
+    res.success(result.rows[0])
+}
 module.exports = {
     getAllClasses,
     getClassesByID,
     getCurrentClasses,
-    getClassStatus
+    getClassStatus,
+    completeClasses
 }
